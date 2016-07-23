@@ -1,0 +1,39 @@
+<%= render 'shared/title',title: "Message Board" %>
+<!--h1>Posts List</h1>
+<hr-->
+<div>
+  <a class="btn btn-social-icon btn-twitter">
+    <span class="fa fa-twitter">T</span>
+  </a>
+  <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/home.php">
+    <!--span class="fa fa-facebook-square"></span-->
+  </a>
+</div>
+<br>
+<ul class="nav nav-pills red">
+    <li role="presentation" class="active">
+    <%= link_to 'NEW',new_post_path%></li>
+</ul>
+<br>
+<% @posts.each do |post| %>
+  <div class="row">
+    <div class="well col-md-6">
+      <p>
+        <h4><%= post.title %></h4>
+      </p>
+      <p>
+        <%= post.content %>
+      </p>
+      <br>
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active"><%= link_to "SHOW", post_path(post)%></li>
+      </ul>
+      <span>
+        
+      </span>
+    </div>
+  </div>
+<% end %>
+<footer id="footer">
+  <p>&copy; Untitled. All rights reserved. Design: <a href="https://www.ntuh.gov.tw/ntuh_chinese.aspx">NTUH</a>.</p>
+</footer>
