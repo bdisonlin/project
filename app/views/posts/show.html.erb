@@ -1,6 +1,6 @@
 <%= render 'shared/title',title: @post.title %>
 <div class "row">
-	<div class="col-md-8 well">
+	<div class="col-md-12 well">
 	  <h3><%= @post.title%></h3>
 	  <p>
 	    <%= @post.content%>
@@ -9,17 +9,17 @@
 </div>
 
 <% @post.comments.each do |comment|%>
-<div class="col-md-8 well">
+<div class="col-md-12 well">
 	<p>
-	  <%= comment.content%>
+	  <%= comment.content %>
 	</p>
+	<br>
+	  <small>commented by </small><%= comment.user.name %>
 </div>
-
-
 
 <% end %>
 
-<div class="col-md-8 well">
+<div class="col-md-12 well">
 	<ul class="nav nav-pills">
         <li role="presentation" class="active"><%= link_to 'BACK', posts_path %></li>
   </ul>

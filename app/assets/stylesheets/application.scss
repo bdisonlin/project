@@ -32,3 +32,17 @@ h1{
 		line-height: 1.5;
 		margin: 0 0 1em 0;
 	}
+
+button_with_like_image {
+    background-image: image-url("like.png");
+    text-indent:30px;
+    display:block;
+    cursor: pointer;
+}
+
+button_with_dislike_image {
+    background-image: image-url("unlike.png") #red no-repeat 10px 6px;
+    text-indent:30px;
+    display:block;
+    cursor: pointer;
+}

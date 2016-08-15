@@ -2,6 +2,46 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   resources :posts
+
+  resources :users, only:[:new,:create]
+  get '/register', to: 'users#new'
+
+  root 'posts#index'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
+
+  resources :users, only: [:new, :create, :edit, :update, :show]
+  resources :categories, only: [:index, :new, :create]
+
+  resources :posts do 
+    resources :comments do 
+    end
+  end
+
+  resources :posts, except: [:destroy] do
+    member do # 客製化連結
+      post :vote
+      # 這樣會產出 posts/1/vote
+    end
+    #member do
+
+    # collection do
+    #   get :get_recent_five
+    # end
+
+    resources :comments, only: [:create, :show] do
+      member do
+        post :vote
+        # 產出 posts/1/comments/1/vote
+      end
+    end
+  end
+  #get '/login', to: 'sessions#new'
+  #post '/login', to: 'sessions#create'
+  #get '/logout', to: 'sessions#destroy'
   # get 'posts' => 'posts#index'
   # get 'posts/:id' => 'posts#show'
   # You can have the root of your site routed with "root"

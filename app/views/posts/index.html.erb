@@ -6,7 +6,7 @@
     <span class="fa fa-twitter">T</span>
   </a>
   <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/home.php">
-    <!--span class="fa fa-facebook-square"></span-->
+    <span class="fa fa-facebook-square">F</span>
   </a>
 </div>
 <br>
@@ -25,15 +25,43 @@
         <%= post.content %>
       </p>
       <br>
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><%= link_to "SHOW", post_path(post)%></li>
-      </ul>
-      <span>
-        
-      </span>
+      <table>
+        <tr>
+          <td>
+            <ul class="nav nav-pills">
+             <li role="presentation" class="active"><%= link_to "SHOW", post_path(post)%></li>
+            </ul>
+          </td>
+          <td>
+          <button class="btn button_with_like_image">
+            <% if logged_in? %>
+              <%= link_to vote_post_path(post, vote: true), method: 'post' do %> like
+              <% end %>
+            <% end %>
+          </button>
+          </td>
+          <td>
+            <button class="btn button_with_dislike_image">
+              <% if logged_in? %>
+                <%= link_to vote_post_path(post, vote: false), method: 'post' do %>dislike
+                <% end %>
+              <% end %>
+            </button>
+          </td>
+          <td>
+            <%= post.total_votes %>
+          </td>
+
+        </tr>
+      </table>
     </div>
   </div>
 <% end %>
 <footer id="footer">
   <p>&copy; Untitled. All rights reserved. Design: <a href="https://www.ntuh.gov.tw/ntuh_chinese.aspx">NTUH</a>.</p>
 </footer>
+
+<script src="jquery.min.js"></script>
+<script src="jquery.poptrox.min.js"></script>
+<script src="skel.min.js"></script>
+<script src="main.js"></script>
